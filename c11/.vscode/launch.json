@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "name": "kernel-debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "miDebuggerServerAddress": "127.0.0.1:1234",
+            "program": "${workspaceFolder}/c11_mbr_1.o",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "logging": {
+                "engineLogging": false
+            },
+            "MIMode": "gdb",
+            // "miDebuggerPath": "gdb",
+            "miDebuggerArgs": "-nx -q",
+            "preLaunchTask": "gdb_server",
+            "setupCommands": [
+                // {"text": "break *0x7c00" },
+                {"text": "break *0x7c00" },
+                {"text": "add-symbol-file ${workspaceFolder}/c11_mbr_1.o 0x7c00"},
+                // {"text": "set architecture i8086" },
+                // {"text": "add-symbol-file ${workspaceFolder}/booter.o 0x7c00" },
+            ],
+        }
+    ]
+}

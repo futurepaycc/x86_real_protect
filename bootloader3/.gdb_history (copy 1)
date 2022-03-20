@@ -1,0 +1,51 @@
+set disassembly-flavor intel 
+target remote:1234
+si
+layout next 
+si
+si
+si
+si
+si
+si
+si
+si
+si
+si
+si
+si
+si
+si
+si
+si
+x/i $eip
+b *c700
+b *7c00
+b *c700+160
+b *7c00+160
+b *7c00+160
+b *8c00
+b *0x7c00
+c
+si
+si
+s
+s
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+si
+si
+si
+si
+c
+file bin/boot_3.elf
+file bin/boot_3.o
+file bin/boot_3.elf

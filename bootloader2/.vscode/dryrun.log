@@ -1,0 +1,57 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/liunix/Documents/linux_kernel/linux-2.6.32'
+ 
+  HOSTCC  scripts/basic/fixdep
+ 
+  HOSTCC  scripts/basic/docproc
+ 
+  HOSTCC  scripts/basic/hash
+ 
+  HOSTCC  scripts/kconfig/conf.o
+ 
+  HOSTCC  scripts/kconfig/kxgettext.o
+ 
+  SHIPPED scripts/kconfig/zconf.tab.c
+ 
+  SHIPPED scripts/kconfig/lex.zconf.c
+ 
+  SHIPPED scripts/kconfig/zconf.hash.c
+ 
+  HOSTCC  scripts/kconfig/zconf.tab.o
+ 
+  HOSTLD  scripts/kconfig/conf
+ 
+scripts/kconfig/conf -s arch/x86/Kconfig
+ 
+***
+*** You have not yet configured your kernel!
+*** (missing kernel config file ".config")
+***
+*** Please run some configurator (e.g. "make oldconfig" or
+*** "make menuconfig" or "make xconfig").
+***
+ 
+make[2]: *** [/home/liunix/Documents/linux_kernel/linux-2.6.32/scripts/kconfig/Makefile:30: silentoldconfig] Error 1
+ 
+make[1]: *** [/home/liunix/Documents/linux_kernel/linux-2.6.32/Makefile:455: silentoldconfig] Error 2
+ 
+make: *** No rule to make target 'include/config/auto.conf', needed by 'include/config/kernel.release'.
+ 
+set -e; echo '  CHK     include/linux/version.h'; mkdir -p include/linux/; 	(echo \#define LINUX_VERSION_CODE 132640; echo '#define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c))';) < /home/liunix/Documents/linux_kernel/linux-2.6.32/Makefile > include/linux/version.h.tmp; if [ -r include/linux/version.h ] && cmp -s include/linux/version.h include/linux/version.h.tmp; then rm -f include/linux/version.h.tmp; else echo '  UPD     include/linux/version.h'; mv -f include/linux/version.h.tmp include/linux/version.h; fi
+ 
+set -e; if [ -L include/asm ]; then asmlink=`readlink include/asm | cut -d '-' -f 2`; if [ "$asmlink" != "x86" ]; then echo "ERROR: the symlink include/asm points to asm-$asmlink but asm-x86 was expected"; echo "       set ARCH or save .config and run 'make mrproper' to fix it"; exit 1; fi; test -e $asmlink || rm include/asm; elif [ -d include/asm ]; then echo "ERROR: include/asm is a directory but a symlink was expected"; exit 1; fi
+if [ ! -L include/asm ]; then echo '  SYMLINK include/asm -> include/asm-x86'; if [ ! -d include/asm-x86 ]; then mkdir -p include/asm-x86; fi; ln -fsn asm-x86 include/asm; fi
+make -f scripts/Makefile.build obj=scripts/basic
+ 
+(cat /dev/null; ) > scripts/basic/modules.order
+ 
+set -e;  echo '  HOSTCC  scripts/basic/fixdep'; gcc-4.3 -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -fno-pie     -o scripts/basic/fixdep scripts/basic/fixdep.c  ; scripts/basic/fixdep scripts/basic/.fixdep.d scripts/basic/fixdep 'gcc-4.3 -Wp,-MD,scripts/basic/.fixdep.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -fno-pie     -o scripts/basic/fixdep scripts/basic/fixdep.c  ' > scripts/basic/.fixdep.tmp; rm -f scripts/basic/.fixdep.d; mv -f scripts/basic/.fixdep.tmp scripts/basic/.fixdep.cmd
+ 
+set -e;  echo '  HOSTCC  scripts/basic/docproc'; gcc-4.3 -Wp,-MD,scripts/basic/.docproc.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -fno-pie     -o scripts/basic/docproc scripts/basic/docproc.c  ; scripts/basic/fixdep scripts/basic/.docproc.d scripts/basic/docproc 'gcc-4.3 -Wp,-MD,scripts/basic/.docproc.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -fno-pie     -o scripts/basic/docproc scripts/basic/docproc.c  ' > scripts/basic/.docproc.tmp; rm -f scripts/basic/.docproc.d; mv -f scripts/basic/.docproc.tmp scripts/basic/.docproc.cmd
+ 
+set -e;  echo '  HOSTCC  scripts/basic/hash'; gcc-4.3 -Wp,-MD,scripts/basic/.hash.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -fno-pie     -o scripts/basic/hash scripts/basic/hash.c  ; scripts/basic/fixdep scripts/basic/.hash.d scripts/basic/hash 'gcc-4.3 -Wp,-MD,scripts/basic/.hash.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -fno-pie     -o scripts/basic/hash scripts/basic/hash.c  ' > scripts/basic/.hash.tmp; rm -f scripts/basic/.hash.d; mv -f scripts/basic/.hash.tmp scripts/basic/.hash.cmd
+ 
+:
+ 
+make: Leaving directory '/home/liunix/Documents/linux_kernel/linux-2.6.32'
+ 
