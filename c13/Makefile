@@ -4,7 +4,7 @@ all:c13_mbr.asm
 	nasm -f bin c13.asm -o c13.bin
 
 	nasm -F dwarf -felf32 c13_mbr.asm -o c13_mbr.o
-	# nasm -F dwarf -felf32 c13_core.asm -o c13_core.o #无法编译: 用了一些bin格式才支持的特殊指令
+	nasm -F dwarf -felf32 c13_core.asm -o c13_core.o #无法编译: 几个符号未定义
 	# nasm -F dwarf -felf32 c13.asm -o c13.o 
 
 	dd if=/dev/zero of=mbr.img count=10000
